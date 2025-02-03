@@ -13,7 +13,8 @@ signal a_signal()
 
 func _ready():
 	for script in BangerScript.get_scripts_at("res://scripts"):
-		BangerScript.add_script("res://scripts".path_join(script), true #if you're addings scripts globally across the game)
+		# Set the second argument to `true` if you're addings scripts to run across the game
+		BangerScript.add_script("res://scripts".path_join(script), true)
 
 	for node in BangerScript.get_children():
 		BangerScript.connect_node(node, "_on_a_signal", a_signal)
