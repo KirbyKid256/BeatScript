@@ -38,10 +38,10 @@ func free_script(path: String):
 		node.queue_free()
 		break
 
-## Easy way to free all the loaded scripts. Does not remove Global scripts automatically.
-func clear_scripts():
+## Easy way to free all the loaded scripts. Does not remove Global scripts automatically unless you specify to do so.
+func clear_scripts(remove_globals: bool = false):
 	for node in get_children():
-		if node.name.ends_with("_Global"): continue
+		if not remove_globals and node.name.ends_with("_Global"): continue
 		node.queue_free()
 
 ## Sets a global variable from a script.
