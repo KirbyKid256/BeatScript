@@ -4,6 +4,7 @@ var variables: Dictionary
 
 ## Easy way to get a list of [GDScript] files from a given location.
 func get_scripts_at(path: String) -> Array:
+	if not DirAccess.dir_exists_absolute(path): return []
 	var array: Array = DirAccess.get_files_at(path)
 	return array.filter(func(a): return a.get_extension() == "gd")
 
