@@ -21,6 +21,12 @@ func add_script(path: String, global: bool = false):
 
 	return node
 
+## Checks if a script exists at the given path.
+func has_script(path: String) -> bool:
+	for node in get_children(): if node.scene_file_path == path:
+		return true
+	return false
+
 ## Returns the index of the child using the given script in this class.
 func find_script(path: String) -> int:
 	for node in get_children(): if node.scene_file_path == path:
