@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm2myslr77scr"]
+
+[ext_resource type="Script" uid="uid://bw0jvexcqrp45" path="res://addons/bangerscript/debug/debug_overlay.gd" id="1_k8mim"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k8mim"]
+device = -1
+pressed = true
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_qju77"]
+events = [SubResource("InputEventKey_k8mim")]
+
+[node name="DebugOverlay" type="CanvasLayer"]
+script = ExtResource("1_k8mim")
+toggle_keybind = SubResource("Shortcut_qju77")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.741176)
+metadata/_edit_lock_ = true
+
+[node name="NodeTree" type="Tree" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1051.0
+offset_bottom = 1064.0
+scroll_horizontal_enabled = false
+
+[node name="NodeInfo" type="TabContainer" parent="."]
+offset_left = 1101.0
+offset_top = 16.0
+offset_right = 1901.0
+offset_bottom = 1064.0
+mouse_filter = 2
+current_tab = 0
+
+[node name="Properties" type="VBoxContainer" parent="NodeInfo"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Signals" type="VBoxContainer" parent="NodeInfo"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
