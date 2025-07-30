@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm2myslr77scr"]
+[gd_scene load_steps=5 format=3 uid="uid://cm2myslr77scr"]
 
 [ext_resource type="Script" uid="uid://bw0jvexcqrp45" path="res://addons/bangerscript/debug/debug_overlay.gd" id="1_k8mim"]
+[ext_resource type="Script" uid="uid://cw2e56evr46gs" path="res://addons/bangerscript/debug/node_info.gd" id="2_qju77"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k8mim"]
 device = -1
@@ -29,6 +30,8 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 1051.0
 offset_bottom = 1064.0
+focus_mode = 0
+allow_search = false
 scroll_horizontal_enabled = false
 
 [node name="NodeInfo" type="TabContainer" parent="."]
@@ -38,12 +41,27 @@ offset_right = 1901.0
 offset_bottom = 1064.0
 mouse_filter = 2
 current_tab = 0
+script = ExtResource("2_qju77")
 
-[node name="Properties" type="VBoxContainer" parent="NodeInfo"]
+[node name="Properties" type="ScrollContainer" parent="NodeInfo"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Signals" type="VBoxContainer" parent="NodeInfo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NodeInfo/Properties"]
+layout_mode = 2
+
+[node name="Methods" type="ScrollContainer" parent="NodeInfo"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NodeInfo/Methods"]
+layout_mode = 2
+
+[node name="Signals" type="ScrollContainer" parent="NodeInfo"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NodeInfo/Signals"]
+layout_mode = 2

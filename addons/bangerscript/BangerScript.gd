@@ -10,7 +10,7 @@ func _init() -> void:
 	add_child(scripts)
 
 func _ready() -> void:
-	if OS.is_debug_build():
+	if OS.get_cmdline_args().has("--banger-debug"):
 		add_child(preload("res://addons/bangerscript/debug/DebugOverlay.tscn").instantiate())
 
 ## Easy way to get a list of [GDScript] files from a given location.

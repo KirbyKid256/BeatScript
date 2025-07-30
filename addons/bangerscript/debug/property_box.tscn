@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnprbcnh4h3t3"]
+
+[ext_resource type="Script" uid="uid://c40ydnre4nm80" path="res://addons/bangerscript/debug/property_box.gd" id="1_q58ix"]
+
+[node name="PropertyBox" type="HBoxContainer"]
+custom_minimum_size = Vector2(800, 30)
+offset_right = 800.0
+offset_bottom = 30.0
+script = ExtResource("1_q58ix")
+
+[node name="PropertyClass" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4297, 0.601144, 0.968612, 1)
+text = " Class"
+
+[node name="PropertyName" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+text = " Name"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,6 +1,10 @@
 extends CanvasLayer
 
-## Toggles the visibility of the BangerScript Debug Overlay. This can be changed to any keybind that fits the needs of your game.
+## If true, this overlay can also be used to edit Property values.
+@export var edit_mode: bool
+## Excludes any path that begins with these strings from the overlay. They're still created and in the Tree, but you can't see or access it from the Tree. This can also be used to make it easier to prevent the game from crashing when using this feature.
+@export var excluded_paths: Array[String] = ["/root/BangerScript"]
+## Toggles the visibility of the BangerScript Debug Overlay. This can be changed to any keybind that fits the needs of your game. By default, it's set to F1.
 @export var toggle_keybind: Shortcut
 
 @onready var node_tree: Tree = $NodeTree
@@ -16,8 +20,7 @@ func _ready() -> void:
 	hide()
 
 	tree_string = get_tree().root.get_tree_string()
-	node_tree.clear()
-	tree_items.clear()
+	node_tree.clear(); tree_items.clear()
 
 	# Setup connections to the nodes
 	var node_list: Array = tree_string.split("\n")
@@ -32,6 +35,12 @@ func _ready() -> void:
 			if path.size() > 1:
 				root = node.left(-("/" + path.back()).length())
 			create_tree_item("/root/" + node, tree_items.filter(filter_by_tooltip.bind("/root/" + root)).front() if path.size() > 1 else node_tree.get_root(), node_list.find(root))
+
+	# Setup connections to the nodes
+	node_tree.item_selected.connect(func():
+		if node_tree.get_selected() != null:
+			await get_tree().process_frame
+			node_info._on_item_selected(node_tree.get_selected().get_tooltip_text(0)))
 
 func _input(event: InputEvent) -> void:
 	if toggle_keybind.matches_event(event) and event.is_pressed():
@@ -68,6 +77,10 @@ func create_tree_item(path: String, parent: TreeItem = null, index: int = -1):
 		var rename_item = func(n: Node):
 			item.set_tooltip_text(0, n.get_path())
 			item.set_suffix(0, "- " + n.name)
+			item.visible = true
+			for p in excluded_paths:
+				if item.get_tooltip_text(0).begins_with(p):
+					item.visible = false; break
 
 		rename_item.call(node)
 		node.renamed.connect(rename_item.bind(node))
@@ -75,11 +88,11 @@ func create_tree_item(path: String, parent: TreeItem = null, index: int = -1):
 		# I would've done a MATCH here, but I don't know how to do that for getting Node super classes
 		# Also I would've used icons, but the Editor icons aren't built-in
 		if node is Node2D:
-			item.set_custom_color(0, Color.ROYAL_BLUE)
+			item.set_custom_color(0, Color.CORNFLOWER_BLUE)
 		elif node is Node3D:
 			item.set_custom_color(0, Color.INDIAN_RED)
 		elif node is Control:
-			item.set_custom_color(0, Color.LIME_GREEN)
+			item.set_custom_color(0, Color.PALE_GREEN)
 
 		tree_items.insert(index, item)
 
@@ -90,6 +103,8 @@ func remove_tree_item(node: Node):
 	tree_string = get_tree().root.get_tree_string()
 
 func _on_node_added(node: Node):
+	if node == null: return
+
 	if tree_items.filter(filter_by_tooltip.bind(node.get_path())).is_empty():
 		remove_null_instances()
 		tree_string = get_tree().root.get_tree_string()

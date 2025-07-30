@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu4r0ocssgs1k"]
+
+[ext_resource type="Script" uid="uid://kxk14qjab23p" path="res://addons/bangerscript/debug/signal_box.gd" id="1_r766v"]
+
+[node name="SignalBox" type="Label"]
+modulate = Color(1, 0.585611, 0.524716, 0.5)
+custom_minimum_size = Vector2(800, 0)
+offset_right = 800.0
+offset_bottom = 30.0
+script = ExtResource("1_r766v")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
