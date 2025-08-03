@@ -3,8 +3,8 @@ extends CanvasLayer
 ## If true, this overlay can also be used to edit Property values.
 @export var edit_mode: bool
 ## Excludes any path that begins with these strings from the overlay. They're still created and in the Tree, but you can't see or access it from the Tree. This can also be used to make it easier to prevent the game from crashing when using this feature.
-@export var excluded_paths: Array[String] = ["/root/BangerScript"]
-## Toggles the visibility of the BangerScript Debug Overlay. This can be changed to any keybind that fits the needs of your game. By default, it's set to F1.
+@export var excluded_paths: Array[String] = ["/root/BeatScript"]
+## Toggles the visibility of the BeatScript Debug Overlay. This can be changed to any keybind that fits the needs of your game. By default, it's set to F1.
 @export var toggle_keybind: Shortcut
 
 @onready var node_tree: Tree = $NodeTree

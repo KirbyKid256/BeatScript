@@ -1,7 +1,7 @@
 extends TabContainer
 
-const property_box = preload("res://addons/bangerscript/debug/property_box.tscn")
-const signal_box = preload("res://addons/bangerscript/debug/signal_box.tscn")
+const property_box = preload("res://addons/beatscript/debug/property_box.tscn")
+const signal_box = preload("res://addons/beatscript/debug/signal_box.tscn")
 
 @onready var properties: VBoxContainer = $Properties/VBoxContainer
 @onready var methods: VBoxContainer = $Methods/VBoxContainer

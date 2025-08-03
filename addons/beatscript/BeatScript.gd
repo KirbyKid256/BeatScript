@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	if OS.get_cmdline_args().has("--banger-debug"):
-		add_child(preload("res://addons/bangerscript/debug/DebugOverlay.tscn").instantiate())
+		add_child(preload("res://addons/beatscript/debug/DebugOverlay.tscn").instantiate())
 
 ## Easy way to get a list of [GDScript] files from a given location.
 func get_scripts_at(path: String) -> Array:

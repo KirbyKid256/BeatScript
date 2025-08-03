@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bu4r0ocssgs1k"]
 
-[ext_resource type="Script" uid="uid://kxk14qjab23p" path="res://addons/bangerscript/debug/signal_box.gd" id="1_r766v"]
+[ext_resource type="Script" uid="uid://kxk14qjab23p" path="res://addons/beatscript/debug/signal_box.gd" id="1_r766v"]
 
 [node name="SignalBox" type="Label"]
 modulate = Color(1, 0.585611, 0.524716, 0.5)

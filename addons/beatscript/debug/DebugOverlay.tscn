@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm2myslr77scr"]
 
-[ext_resource type="Script" uid="uid://bw0jvexcqrp45" path="res://addons/bangerscript/debug/debug_overlay.gd" id="1_k8mim"]
-[ext_resource type="Script" uid="uid://cw2e56evr46gs" path="res://addons/bangerscript/debug/node_info.gd" id="2_qju77"]
+[ext_resource type="Script" uid="uid://bw0jvexcqrp45" path="res://addons/beatscript/debug/debug_overlay.gd" id="1_k8mim"]
+[ext_resource type="Script" uid="uid://cw2e56evr46gs" path="res://addons/beatscript/debug/node_info.gd" id="2_qju77"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k8mim"]
 device = -1
