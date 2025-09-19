@@ -24,7 +24,12 @@ func add_script(path: String, global: bool = false):
 	if not FileAccess.file_exists(path): return
 	for node in scripts.get_children(): if node.scene_file_path == path: return
 
-	var node: Node = Node.new()
+	var script: String = FileAccess.get_file_as_string(path)
+	var extend_pos: int = script.find("extends ")
+	if extend_pos < 0: return
+
+	var extend: String = script.erase(0, extend_pos + "extends ".length()).split("\n")[0].dedent()
+	var node = ClassDB.instantiate(extend)
 	node.scene_file_path = path
 	node.name = path.get_file().get_basename().to_pascal_case() + ("@Global" if global else "")
 	node.set_script(ResourceLoader.load(path, "GDScript", ResourceLoader.CACHE_MODE_IGNORE))
